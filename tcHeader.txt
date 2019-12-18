@@ -1,0 +1,65 @@
+#region usings
+
+using System;
+using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BT_Tools;
+using BT_CSB_Tools;
+using BT_CSB_Tools.Logging;
+using BT_CSB_Tools.Utils.Xml;
+using BT_CSB_Tools.SignalPoolGenerator.Signals;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.MwtSignal.Misc;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal;
+using BT_CSB_Tools.SignalPoolGenerator.Signals.PdSignal.Misc;
+using SHL14;
+
+#endregion
+
+namespace Testcase
+{
+    class TC2 : SignalPool
+    {
+
+        public override string TestScriptVersion
+        {
+            get { return "2.0"; }
+        }
+
+        public override void PostExecution()
+        {
+            TraceInfo("PostExecution");
+            UnforceAll();
+        }
+
+        public override void PreExecution()
+        {
+            TraceInfo("PreExecution");
+            UnforceAll();
+            //Fire System reports No Failure
+            RTSIM.SIGNAL_A.Force(true);
+            RTSIM.SIGNAL_B.Force(true);
+            RTSIM.SIGNAL_C.Force(true);
+            RTSIM.SIGNAL_D.Force(true);
+
+            //Battery System reports No Failure
+            RTSIM.SIGNAL_E.Force(true);
+            RTSIM.SIGNAL_F.Force(true);
+            RTSIM.SIGNAL_G.Force(true);
+            RTSIM.SIGNAL_H.Force(true);
+            RTSIM.SIGNAL_I.Force(true);
+            RTSIM.SIGNAL_J.Force(true);
+            RTSIM.SIGNAL_K.Force(true);
+            RTSIM.SIGNAL_L.Force(true);
+
+            //Derailment System reports No Failure
+            RTSIM.SIGNAL_M.Force(true);
+            RTSIM.SIGNAL_N.Force(true);
+            RTSIM.SIGNAL_O.Force(true);
+            RTSIM.SIGNAL_P.Force(true);
+
+            //Door System reports No Failure
+            setDoorSystemFailure(true);
+        }
